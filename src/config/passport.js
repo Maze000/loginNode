@@ -3,8 +3,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const User = require('../app/models/user');
 
 module.exports = function (passport) {
-  // required for persistent login sessions
-  // passport needs ability to serialize and unserialize users out of session
+ 
   passport.serializeUser(function (user, done) {
     done(null, user.id);
   });
@@ -43,8 +42,6 @@ module.exports = function (passport) {
   }));
 
   // login
-  // we are using named strategies since we have one for login and one for signup
-  // by default, if there was no name, it would just be called 'local
   passport.use('local-login', new LocalStrategy({
     usernameField: 'email',
     passwordField: 'password',
